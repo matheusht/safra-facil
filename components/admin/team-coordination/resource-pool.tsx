@@ -50,8 +50,8 @@ export function ResourcePool() {
     <Card className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       <CardHeader className="border-b-2 border-black">
         <div className="flex flex-col items-start justify-between space-y-2 md:flex-row md:items-center md:space-y-0">
-          <CardTitle>Resource Pool</CardTitle>
-          <Button>Add Resource Request</Button>
+          <CardTitle>Lista de Recursos</CardTitle>
+          <Button>Adicionar Pedido de Recurso</Button>
         </div>
       </CardHeader>
       <CardContent className="p-0">

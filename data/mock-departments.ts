@@ -1,44 +1,70 @@
 import type { Department } from "@/types/department"
 
+// Definindo a interface Department para corresponder ao uso do componente
+interface Department {
+  id: string;
+  name: string;
+  memberCount: number;
+  openIssues: number; // Renomeado de openIssuesCount para openIssues
+  avgResolutionTime: number; // em horas
+  performance: "good" | "average" | "poor";
+}
+
 export const mockDepartments: Department[] = [
   {
-    id: "dept-1",
-    name: "Urban Planning",
-    memberCount: 12,
-    openIssuesCount: 24,
-    avgResolutionTime: 48, // in hours
-    performance: "good", // good, average, poor
-  },
-  {
-    id: "dept-2",
-    name: "Environmental Services",
+    id: "dept-agri-001",
+    name: "Engenharia Agronômica",
     memberCount: 8,
-    openIssuesCount: 17,
-    avgResolutionTime: 36,
+    openIssues: 15, // Problemas como análise de solo, doenças
+    avgResolutionTime: 48, // Tempo para analisar e propor soluções
     performance: "good",
   },
   {
-    id: "dept-3",
-    name: "Public Works",
-    memberCount: 15,
-    openIssuesCount: 42,
-    avgResolutionTime: 72,
-    performance: "poor",
+    id: "dept-agri-002",
+    name: "Serviços Veterinários",
+    memberCount: 5,
+    openIssues: 7, // Questões de saúde animal, vacinação
+    avgResolutionTime: 24,
+    performance: "good",
   },
   {
-    id: "dept-4",
-    name: "Parks & Recreation",
+    id: "dept-agri-003",
+    name: "Gestão de Maquinário Agrícola",
     memberCount: 10,
-    openIssuesCount: 19,
+    openIssues: 28, // Manutenção de tratores, colheitadeiras
+    avgResolutionTime: 72,
+    performance: "poor", // Pode ter mais problemas devido à complexidade
+  },
+  {
+    id: "dept-agri-004",
+    name: "TI e Automação Agrícola",
+    memberCount: 6,
+    openIssues: 10, // Problemas com sensores, drones, softwares de gestão
+    avgResolutionTime: 36,
+    performance: "average",
+  },
+  {
+    id: "dept-agri-005",
+    name: "Recursos Hídricos e Irrigação",
+    memberCount: 4,
+    openIssues: 5, // Problemas com sistemas de irrigação, gestão da água
+    avgResolutionTime: 30,
+    performance: "good",
+  },
+  {
+    id: "dept-agri-006",
+    name: "Logística e Armazenagem",
+    memberCount: 7,
+    openIssues: 12, // Questões de transporte de safra, armazenamento de grãos
     avgResolutionTime: 60,
     performance: "average",
   },
   {
-    id: "dept-5",
-    name: "Accessibility Office",
-    memberCount: 6,
-    openIssuesCount: 13,
-    avgResolutionTime: 40,
+    id: "dept-agri-007",
+    name: "Certificações e Qualidade",
+    memberCount: 3,
+    openIssues: 3, // Auditorias, conformidade com normas
+    avgResolutionTime: 96, // Processos mais longos
     performance: "good",
   },
 ]

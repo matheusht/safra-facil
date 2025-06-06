@@ -146,50 +146,80 @@ export function StepTwo({ formData, updateFormData }: StepTwoProps) {
       </div>
 
       <div className="space-y-2">
-        <Label className="text-lg font-bold">Tipo de Obstáculo</Label>
+        <Label className="text-lg font-bold">Qual o seu principal setor de atuação?</Label>
         <div className="grid grid-cols-2 gap-4">
           <div className="flex items-center space-x-2">
             <Checkbox
-              id="tree"
-              checked={formData.obstacleTags.includes("tree")}
-              onCheckedChange={() => handleTagToggle("tree")}
+              id="silviculture"
+              checked={formData.obstacleTags.includes("silviculture")}
+              onCheckedChange={() => handleTagToggle("silviculture")}
               className="border-2 border-black data-[state=checked]:bg-green-500"
             />
             <label
-              htmlFor="tree"
+              htmlFor="silviculture"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Árvore
+              Silvicultura 
             </label>
           </div>
 
           <div className="flex items-center space-x-2">
             <Checkbox
-              id="construction"
-              checked={formData.obstacleTags.includes("construction")}
-              onCheckedChange={() => handleTagToggle("construction")}
+              id="horticulture"
+              checked={formData.obstacleTags.includes("horticulture")}
+              onCheckedChange={() => handleTagToggle("horticulture")}
               className="border-2 border-black data-[state=checked]:bg-yellow-500"
             />
             <label
-              htmlFor="construction"
+              htmlFor="horticulture"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Construção
+              Horticultura
             </label>
           </div>
 
           <div className="flex items-center space-x-2">
             <Checkbox
-              id="parked-car"
-              checked={formData.obstacleTags.includes("parked-car")}
-              onCheckedChange={() => handleTagToggle("parked-car")}
+              id="grains"
+              checked={formData.obstacleTags.includes("grains")}
+              onCheckedChange={() => handleTagToggle("grains")}
               className="border-2 border-black data-[state=checked]:bg-blue-500"
             />
             <label
-              htmlFor="parked-car"
+              htmlFor="grains"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Carro Estacionado
+              Grãos
+            </label>
+
+          </div>
+              <div className="flex items-center space-x-2">
+            <Checkbox
+              id="organics"
+              checked={formData.obstacleTags.includes("organics")}
+              onCheckedChange={() => handleTagToggle("organics")}
+              className="border-2 border-black data-[state=checked]:bg-purple-500"
+            />
+            <label
+              htmlFor="organics"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Orgânicos
+            </label>
+          </div>
+          
+            <div className="flex items-center space-x-2">
+            <Checkbox
+              id="mixed"
+              checked={formData.obstacleTags.includes("mixed")}
+              onCheckedChange={() => handleTagToggle("mixed")}
+              className="border-2 border-black data-[state=checked]:bg-purple-500"
+            />
+            <label
+              htmlFor="mixed"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Misto
             </label>
           </div>
 
@@ -221,23 +251,24 @@ export function StepTwo({ formData, updateFormData }: StepTwoProps) {
       </div>
 
       <div className="space-y-2">
-        <Label className="text-lg font-bold">Gravidade do Problema</Label>
-        <div className="space-y-4">
-          <Slider
-            value={[formData.severity]}
-            min={1}
-            max={5}
-            step={1}
-            onValueChange={(value) => updateFormData({ severity: value[0] })}
-            className="border-2 border-black"
-          />
-          <div className="flex justify-between text-sm">
-            <span>Baixa</span>
-            <span>Média</span>
-            <span>Alta</span>
-          </div>
-        </div>
-      </div>
+  <Label className="text-lg font-bold">Qual o seu faturamento médio?</Label>
+  <div className="space-y-4">
+    <Slider
+      value={[formData.severity]}
+      min={1}
+      max={5} // Adjust max if you want more than 3 distinct levels
+      step={1}
+      onValueChange={(value) => updateFormData({ severity: value[0] })}
+      className="border-2 border-black"
+    />
+    <div className="flex justify-between text-sm">
+      {/* Choose one of the sets of labels above */}
+      <span>Até R$50.000</span> {/* Example from option 2 */}
+      <span>R$50.001 - R$250.000</span> {/* Example from option 2 */}
+      <span>Acima de R$250.000</span> {/* Example from option 2 */}
+    </div>
+  </div>
+</div>
     </div>
   )
 }

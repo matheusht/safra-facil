@@ -1,25 +1,18 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Menu, MapPin } from "lucide-react";
-import { LocationSearch } from "@/components/home/location-search";
-import { useMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button"
+import { Menu, MapPin } from "lucide-react"
+import { LocationSearch } from "@/components/home/location-search"
+import { useMobile } from "@/hooks/use-mobile"
 
 interface NavigationBarProps {
-  onMenuClick: () => void;
-  onLocationSelect: (location: {
-    name: string;
-    coordinates: [number, number];
-  }) => void;
-  onMyLocationClick: () => void;
+  onMenuClick: () => void
+  onLocationSelect: (location: { name: string; coordinates: [number, number] }) => void
+  onMyLocationClick: () => void
 }
 
-export function NavigationBar({
-  onMenuClick,
-  onLocationSelect,
-  onMyLocationClick,
-}: NavigationBarProps) {
-  const isMobile = useMobile();
+export function NavigationBar({ onMenuClick, onLocationSelect, onMyLocationClick }: NavigationBarProps) {
+  const isMobile = useMobile()
 
   return (
     <div className="absolute top-4 left-4 right-4 flex flex-col md:flex-row items-start md:items-center justify-between z-10 gap-2">
@@ -32,9 +25,7 @@ export function NavigationBar({
         >
           <Menu className="h-5 w-5" />
         </Button>
-        <div className="text-xl font-bold bg-white px-3 py-1 border-4 border-black shadow-neobrutalism">
-          Safra Facil
-        </div>
+        <div className="text-xl font-bold bg-white px-3 py-1 border-4 border-black shadow-neobrutalism">Safra Facil</div>
       </div>
 
       {/* Location Search */}
@@ -53,5 +44,5 @@ export function NavigationBar({
         </Button>
       </div>
     </div>
-  );
+  )
 }

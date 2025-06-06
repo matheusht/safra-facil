@@ -93,7 +93,7 @@ export function RecentReportsFeed({ reports, isLoading }: RecentReportsFeedProps
   return (
     <Card className="border-4 border-black shadow-neobrutalism">
       <CardHeader className="bg-blue-100 border-b-4 border-black">
-        <CardTitle className="text-xl">Relatórios Recentes</CardTitle>
+        <CardTitle className="text-xl">Análises Recentes</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         {isLoading ? (

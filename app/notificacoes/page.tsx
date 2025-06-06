@@ -1,50 +1,46 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { ArrowLeft, Bell, CheckCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { NotificationCard } from "@/components/notifications/notification-card";
-import { EmptyState } from "@/components/notifications/empty-state";
-import { mockNotifications } from "@/data/mock-notifications";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { ArrowLeft, Bell, CheckCheck } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { NotificationCard } from "@/components/notifications/notification-card"
+import { EmptyState } from "@/components/notifications/empty-state"
+import { mockNotifications } from "@/data/mock-notifications"
 
 export default function NotificationsPage() {
-  const [notifications, setNotifications] = useState(mockNotifications);
-  const [activeFilter, setActiveFilter] = useState("all");
-  const [unreadOnly, setUnreadOnly] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [notifications, setNotifications] = useState(mockNotifications)
+  const [activeFilter, setActiveFilter] = useState("all")
+  const [unreadOnly, setUnreadOnly] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   // Simulate loading state
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+      setIsLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Filter notifications based on active filter and unread toggle
   const filteredNotifications = notifications.filter((notification) => {
-    if (unreadOnly && notification.read) return false;
-    if (activeFilter === "all") return true;
-    return notification.type === activeFilter;
-  });
+    if (unreadOnly && notification.read) return false
+    if (activeFilter === "all") return true
+    return notification.type === activeFilter
+  })
 
   // Count unread notifications
-  const unreadCount = notifications.filter(
-    (notification) => !notification.read
-  ).length;
+  const unreadCount = notifications.filter((notification) => !notification.read).length
 
   // Mark a notification as read
   const markAsRead = (id: string) => {
     setNotifications(
-      notifications.map((notification) =>
-        notification.id === id ? { ...notification, read: true } : notification
-      )
-    );
-  };
+      notifications.map((notification) => (notification.id === id ? { ...notification, read: true } : notification)),
+    )
+  }
 
   // Mark all notifications as read
   const markAllAsRead = () => {
@@ -52,16 +48,14 @@ export default function NotificationsPage() {
       notifications.map((notification) => ({
         ...notification,
         read: true,
-      }))
-    );
-  };
+      })),
+    )
+  }
 
   // Delete a notification
   const deleteNotification = (id: string) => {
-    setNotifications(
-      notifications.filter((notification) => notification.id !== id)
-    );
-  };
+    setNotifications(notifications.filter((notification) => notification.id !== id))
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pb-10">
@@ -107,9 +101,7 @@ export default function NotificationsPage() {
                 </Badge>
               )}
             </h1>
-            <p className="text-lg mt-1">
-              Atualizações sobre seus relatórios e eventos da comunidade
-            </p>
+            <p className="text-lg mt-1">Atualizações sobre seus relatórios e eventos da comunidade</p>
           </div>
         </div>
       </div>
@@ -118,35 +110,18 @@ export default function NotificationsPage() {
       <div className="sticky top-16 bg-white border-b-4 border-black z-20 py-3">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <Tabs
-              defaultValue="all"
-              value={activeFilter}
-              onValueChange={setActiveFilter}
-              className="w-full md:w-auto"
-            >
+            <Tabs defaultValue="all" value={activeFilter} onValueChange={setActiveFilter} className="w-full md:w-auto">
               <TabsList className="grid grid-cols-4 w-full md:w-auto border-4 border-black shadow-neobrutalism">
-                <TabsTrigger
-                  value="all"
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
-                >
+                <TabsTrigger value="all" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">
                   Todas
                 </TabsTrigger>
-                <TabsTrigger
-                  value="report"
-                  className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
-                >
+                <TabsTrigger value="report" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
                   Relatórios
                 </TabsTrigger>
-                <TabsTrigger
-                  value="event"
-                  className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
-                >
+                <TabsTrigger value="event" className="data-[state=active]:bg-purple-500 data-[state=active]:text-white">
                   Eventos
                 </TabsTrigger>
-                <TabsTrigger
-                  value="alert"
-                  className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white"
-                >
+                <TabsTrigger value="alert" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white">
                   Alertas
                 </TabsTrigger>
               </TabsList>
@@ -170,10 +145,7 @@ export default function NotificationsPage() {
           // Loading state
           <div className="space-y-4">
             {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="border-4 border-black shadow-neobrutalism p-6 bg-white animate-pulse"
-              >
+              <div key={i} className="border-4 border-black shadow-neobrutalism p-6 bg-white animate-pulse">
                 <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
                 <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
                 <div className="h-4 bg-gray-200 rounded w-1/2"></div>
@@ -196,5 +168,5 @@ export default function NotificationsPage() {
         )}
       </div>
     </div>
-  );
+  )
 }

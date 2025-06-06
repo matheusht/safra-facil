@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { Bell, Download, Settings, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import { Bell, Download, Settings, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 
 export function AdminHeader() {
   return (
@@ -11,9 +11,7 @@ export function AdminHeader() {
       <div className="h-full px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold">Safra Facil</span>
-          <Badge className="bg-green-500 text-white border-2 border-black">
-            Admin
-          </Badge>
+          <Badge className="bg-green-500 text-white border-2 border-black">Admin</Badge>
         </div>
 
         <div className="flex items-center gap-3">
@@ -61,5 +59,5 @@ export function AdminHeader() {
         </div>
       </div>
     </header>
-  );
+  )
 }

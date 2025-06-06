@@ -9,6 +9,7 @@
 
 # production
 /build
+*.Identifier
 
 # debug
 npm-debug.log*

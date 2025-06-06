@@ -1,22 +1,13 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Star,
-  MessageCircle,
-  ThumbsUp,
-  AlertTriangle,
-  CheckCircle,
-  Clock,
-  X,
-  ArrowLeft,
-} from "lucide-react";
+import { useState } from "react"
+import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Textarea } from "@/components/ui/textarea"
+import { Star, MessageCircle, ThumbsUp, AlertTriangle, CheckCircle, Clock, X, ArrowLeft } from "lucide-react"
 
 // Mock data for reports
 const mockReports = [
@@ -27,22 +18,11 @@ const mockReports = [
     location: "Av. Paulista, 1000",
     date: "2025-05-10T14:30:00",
     status: "resolved",
-    description:
-      "Calçada com buracos e desnivelada, dificultando a passagem de pedestres e cadeirantes.",
+    description: "Calçada com buracos e desnivelada, dificultando a passagem de pedestres e cadeirantes.",
     photos: ["/calcada.webp?height=100&width=100"],
     comments: [
-      {
-        id: "c1",
-        author: "Prefeitura",
-        text: "Equipe enviada para avaliação.",
-        date: "2025-05-11T09:15:00",
-      },
-      {
-        id: "c2",
-        author: "Prefeitura",
-        text: "Reparo concluído.",
-        date: "2025-05-15T16:45:00",
-      },
+      { id: "c1", author: "Prefeitura", text: "Equipe enviada para avaliação.", date: "2025-05-11T09:15:00" },
+      { id: "c2", author: "Prefeitura", text: "Reparo concluído.", date: "2025-05-15T16:45:00" },
     ],
     rating: 4,
     upvotes: 12,
@@ -54,16 +34,10 @@ const mockReports = [
     location: "Rua Augusta, 500",
     date: "2025-05-18T10:20:00",
     status: "in-progress",
-    description:
-      "Área sem nenhuma árvore, causando desconforto térmico nos dias quentes.",
+    description: "Área sem nenhuma árvore, causando desconforto térmico nos dias quentes.",
     photos: ["/arvore.webp?height=100&width=100"],
     comments: [
-      {
-        id: "c3",
-        author: "Prefeitura",
-        text: "Solicitação recebida e em análise.",
-        date: "2025-05-19T11:30:00",
-      },
+      { id: "c3", author: "Prefeitura", text: "Solicitação recebida e em análise.", date: "2025-05-19T11:30:00" },
     ],
     rating: null,
     upvotes: 8,
@@ -75,26 +49,21 @@ const mockReports = [
     location: "Praça da República",
     date: "2025-05-20T16:45:00",
     status: "pending",
-    description:
-      "Área com temperatura muito acima da média da cidade, sem sombra ou vegetação.",
+    description: "Área com temperatura muito acima da média da cidade, sem sombra ou vegetação.",
     photos: ["/heat-island.webp?height=100&width=100"],
     comments: [],
     rating: null,
     upvotes: 5,
   },
-];
+]
 
 // Status mapping
 const statusMap = {
   pending: { label: "Pendente", color: "bg-yellow-500", icon: Clock },
-  "in-progress": {
-    label: "Em Andamento",
-    color: "bg-blue-500",
-    icon: AlertTriangle,
-  },
+  "in-progress": { label: "Em Andamento", color: "bg-blue-500", icon: AlertTriangle },
   resolved: { label: "Resolvido", color: "bg-green-500", icon: CheckCircle },
   rejected: { label: "Rejeitado", color: "bg-red-500", icon: X },
-};
+}
 
 // Category mapping
 const categoryMap = {
@@ -106,15 +75,15 @@ const categoryMap = {
   "heat-island": "Ilha de calor",
   flooding: "Área de alagamento",
   other: "Outro problema",
-};
+}
 
 export default function MeusRelatorios() {
-  const [activeReport, setActiveReport] = useState<string | null>(null);
-  const [newComment, setNewComment] = useState("");
-  const [reports, setReports] = useState(mockReports);
+  const [activeReport, setActiveReport] = useState<string | null>(null)
+  const [newComment, setNewComment] = useState("")
+  const [reports, setReports] = useState(mockReports)
 
   const handleAddComment = (reportId: string) => {
-    if (!newComment.trim()) return;
+    if (!newComment.trim()) return
 
     setReports(
       reports.map((report) => {
@@ -130,42 +99,42 @@ export default function MeusRelatorios() {
                 date: new Date().toISOString(),
               },
             ],
-          };
+          }
         }
-        return report;
-      })
-    );
+        return report
+      }),
+    )
 
-    setNewComment("");
-  };
+    setNewComment("")
+  }
 
   const handleRateReport = (reportId: string, rating: number) => {
     setReports(
       reports.map((report) => {
         if (report.id === reportId) {
-          return { ...report, rating };
+          return { ...report, rating }
         }
-        return report;
-      })
-    );
-  };
+        return report
+      }),
+    )
+  }
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+    const date = new Date(dateString)
     return new Intl.DateTimeFormat("pt-BR", {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    }).format(date);
-  };
+    }).format(date)
+  }
 
   // Function to render status icon
   const renderStatusIcon = (status: string) => {
-    const IconComponent = statusMap[status].icon;
-    return <IconComponent className="h-4 w-4 mr-1" />;
-  };
+    const IconComponent = statusMap[status].icon
+    return <IconComponent className="h-4 w-4 mr-1" />
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pb-10">
@@ -200,28 +169,16 @@ export default function MeusRelatorios() {
 
         <Tabs defaultValue="all" className="w-full">
           <TabsList className="grid w-full grid-cols-4 mb-6 border-4 border-black shadow-neobrutalism">
-            <TabsTrigger
-              value="all"
-              className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
-            >
+            <TabsTrigger value="all" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
               Todos
             </TabsTrigger>
-            <TabsTrigger
-              value="pending"
-              className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white"
-            >
+            <TabsTrigger value="pending" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-white">
               Pendentes
             </TabsTrigger>
-            <TabsTrigger
-              value="in-progress"
-              className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
-            >
+            <TabsTrigger value="in-progress" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">
               Em Andamento
             </TabsTrigger>
-            <TabsTrigger
-              value="resolved"
-              className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
-            >
+            <TabsTrigger value="resolved" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
               Resolvidos
             </TabsTrigger>
           </TabsList>
@@ -231,24 +188,15 @@ export default function MeusRelatorios() {
               {reports
                 .filter((report) => tab === "all" || report.status === tab)
                 .map((report) => (
-                  <Card
-                    key={report.id}
-                    className="border-4 border-black shadow-neobrutalism overflow-hidden"
-                  >
+                  <Card key={report.id} className="border-4 border-black shadow-neobrutalism overflow-hidden">
                     <CardHeader className="bg-gray-100 pb-2">
                       <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle className="text-xl">
-                            {report.title}
-                          </CardTitle>
-                          <p className="text-sm text-gray-600">
-                            {report.location}
-                          </p>
+                          <CardTitle className="text-xl">{report.title}</CardTitle>
+                          <p className="text-sm text-gray-600">{report.location}</p>
                         </div>
                         <Badge
-                          className={`${
-                            statusMap[report.status].color
-                          } border-2 border-black text-white px-3 py-1 flex items-center`}
+                          className={`${statusMap[report.status].color} border-2 border-black text-white px-3 py-1 flex items-center`}
                         >
                           {renderStatusIcon(report.status)}
                           {statusMap[report.status].label}
@@ -269,8 +217,7 @@ export default function MeusRelatorios() {
                           <div className="flex items-center gap-2">
                             <span className="font-bold">Apoios:</span>
                             <span className="flex items-center">
-                              <ThumbsUp className="h-4 w-4 mr-1" />{" "}
-                              {report.upvotes}
+                              <ThumbsUp className="h-4 w-4 mr-1" /> {report.upvotes}
                             </span>
                           </div>
 
@@ -293,9 +240,7 @@ export default function MeusRelatorios() {
 
                         <div className="md:w-3/4">
                           <p className="font-bold mb-1">Descrição:</p>
-                          <p className="text-gray-700 mb-4">
-                            {report.description}
-                          </p>
+                          <p className="text-gray-700 mb-4">{report.description}</p>
 
                           <div>
                             <div className="flex items-center justify-between mb-2">
@@ -303,13 +248,7 @@ export default function MeusRelatorios() {
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() =>
-                                  setActiveReport(
-                                    activeReport === report.id
-                                      ? null
-                                      : report.id
-                                  )
-                                }
+                                onClick={() => setActiveReport(activeReport === report.id ? null : report.id)}
                               >
                                 <MessageCircle className="h-4 w-4 mr-1" />
                                 {report.comments.length} comentários
@@ -321,35 +260,24 @@ export default function MeusRelatorios() {
                                 {report.comments.length > 0 ? (
                                   <div className="space-y-3 mb-3">
                                     {report.comments.map((comment) => (
-                                      <div
-                                        key={comment.id}
-                                        className="border-b border-gray-200 pb-2"
-                                      >
+                                      <div key={comment.id} className="border-b border-gray-200 pb-2">
                                         <div className="flex justify-between items-center">
-                                          <span className="font-bold">
-                                            {comment.author}
-                                          </span>
-                                          <span className="text-xs text-gray-500">
-                                            {formatDate(comment.date)}
-                                          </span>
+                                          <span className="font-bold">{comment.author}</span>
+                                          <span className="text-xs text-gray-500">{formatDate(comment.date)}</span>
                                         </div>
                                         <p>{comment.text}</p>
                                       </div>
                                     ))}
                                   </div>
                                 ) : (
-                                  <p className="text-gray-500 mb-3">
-                                    Nenhum comentário ainda.
-                                  </p>
+                                  <p className="text-gray-500 mb-3">Nenhum comentário ainda.</p>
                                 )}
 
                                 <div className="flex flex-col gap-2">
                                   <Textarea
                                     placeholder="Adicione um comentário ou atualização..."
                                     value={newComment}
-                                    onChange={(e) =>
-                                      setNewComment(e.target.value)
-                                    }
+                                    onChange={(e) => setNewComment(e.target.value)}
                                     className="border-2 border-black"
                                   />
                                   <Button
@@ -365,9 +293,7 @@ export default function MeusRelatorios() {
 
                             {report.status === "resolved" && (
                               <div className="mt-4">
-                                <p className="font-bold mb-2">
-                                  Avalie a resolução:
-                                </p>
+                                <p className="font-bold mb-2">Avalie a resolução:</p>
                                 <div className="flex gap-1">
                                   {[1, 2, 3, 4, 5].map((star) => (
                                     <Button
@@ -375,13 +301,9 @@ export default function MeusRelatorios() {
                                       variant="ghost"
                                       size="icon"
                                       className={`h-8 w-8 ${
-                                        report.rating && report.rating >= star
-                                          ? "text-yellow-500"
-                                          : "text-gray-300"
+                                        report.rating && report.rating >= star ? "text-yellow-500" : "text-gray-300"
                                       }`}
-                                      onClick={() =>
-                                        handleRateReport(report.id, star)
-                                      }
+                                      onClick={() => handleRateReport(report.id, star)}
                                     >
                                       <Star className="h-6 w-6 fill-current" />
                                     </Button>
@@ -401,13 +323,9 @@ export default function MeusRelatorios() {
                   </Card>
                 ))}
 
-              {reports.filter(
-                (report) => tab === "all" || report.status === tab
-              ).length === 0 && (
+              {reports.filter((report) => tab === "all" || report.status === tab).length === 0 && (
                 <div className="text-center py-10">
-                  <p className="text-gray-500">
-                    Nenhum relatório encontrado nesta categoria.
-                  </p>
+                  <p className="text-gray-500">Nenhum relatório encontrado nesta categoria.</p>
                 </div>
               )}
             </TabsContent>
@@ -415,5 +333,5 @@ export default function MeusRelatorios() {
         </Tabs>
       </div>
     </div>
-  );
+  )
 }

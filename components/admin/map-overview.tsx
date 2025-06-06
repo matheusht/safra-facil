@@ -161,7 +161,7 @@ export function MapOverview({ reports, isLoading }: MapOverviewProps) {
     <Card className="border-4 border-black shadow-neobrutalism">
       <CardHeader className="bg-green-100 border-b-4 border-black">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <CardTitle className="text-xl">Mapa de Relatórios</CardTitle>
+          <CardTitle className="text-xl">Mapa de produção</CardTitle>
           <div className="flex items-center gap-2">
             <Toggle
               pressed={showHeatmap}

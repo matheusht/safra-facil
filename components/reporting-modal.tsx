@@ -72,7 +72,7 @@ export function ReportingModal({ open, onOpenChange, initialLocation }: Reportin
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px] border-4 border-black shadow-neobrutalism bg-white p-0 max-h-[90vh] overflow-y-auto">
         <DialogHeader className="bg-green-500 p-6 border-b-4 border-black">
-          <DialogTitle className="text-2xl font-bold text-black">Reportar Problema</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-black">Registrar Fazenda</DialogTitle>
         </DialogHeader>
 
         <div className="p-6">

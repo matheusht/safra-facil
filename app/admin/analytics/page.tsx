@@ -40,7 +40,7 @@ export default function AnalyticsPage() {
         <AdminHeader title="Hub de Análises Urbanas" />
         <main className="p-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <h1 className="text-3xl font-bold">Hub de Análises Urbanas</h1>
+            <h1 className="text-3xl font-bold">Hub de Análises Recentes</h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
               <DistrictSelector

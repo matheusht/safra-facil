@@ -60,7 +60,7 @@ const MapContainer = memo(function MapContainer({
 
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v12",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
         center: [lng, lat],
         zoom: zoom,
         // Fix: Ensure the map takes up the full container

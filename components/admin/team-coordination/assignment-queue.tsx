@@ -87,7 +87,7 @@ export function AssignmentQueue({ reports, departments }: AssignmentQueueProps) 
   return (
     <Card className="border-4 border-black shadow-neobrutalism overflow-hidden">
       <CardHeader className="bg-yellow-100 border-b-4 border-black">
-        <CardTitle className="text-xl">Assignment Queue</CardTitle>
+        <CardTitle className="text-xl">Lista de Problemas Recentes</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         <div className="overflow-x-auto">
@@ -165,7 +165,7 @@ export function AssignmentQueue({ reports, departments }: AssignmentQueueProps) 
               <Users className="h-5 w-5 text-gray-500" />
               <Select value={selectedDepartment} onValueChange={handleDepartmentChange}>
                 <SelectTrigger className="min-w-[200px] border-2 border-black">
-                  <SelectValue placeholder="Select Department" />
+                  <SelectValue placeholder="Selecionar Departamento" />
                 </SelectTrigger>
                 <SelectContent>
                   {departments.map((department) => (

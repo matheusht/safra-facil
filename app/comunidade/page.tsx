@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
 import {
   ArrowLeft,
   MapPin,
@@ -14,53 +14,51 @@ import {
   ThumbsUp,
   Users,
   FileText,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useMobile } from "@/hooks/use-mobile";
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useMobile } from "@/hooks/use-mobile"
 
 export default function CommunityHub() {
-  const isMobile = useMobile();
-  const [activeSection, setActiveSection] = useState("impact");
+  const isMobile = useMobile()
+  const [activeSection, setActiveSection] = useState("impact")
   const sectionRefs = {
     impact: useRef<HTMLDivElement>(null),
     education: useRef<HTMLDivElement>(null),
     volunteer: useRef<HTMLDivElement>(null),
     gamification: useRef<HTMLDivElement>(null),
-  };
+  }
 
   // Handle scroll to section
   const scrollToSection = (section: string) => {
-    setActiveSection(section);
-    sectionRefs[section as keyof typeof sectionRefs].current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
+    setActiveSection(section)
+    sectionRefs[section as keyof typeof sectionRefs].current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 100
 
       // Check which section is currently in view
       Object.entries(sectionRefs).forEach(([section, ref]) => {
         if (ref.current) {
-          const offsetTop = ref.current.offsetTop;
-          const offsetBottom = offsetTop + ref.current.offsetHeight;
+          const offsetTop = ref.current.offsetTop
+          const offsetBottom = offsetTop + ref.current.offsetHeight
 
           if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(section);
+            setActiveSection(section)
           }
         }
-      });
-    };
+      })
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
@@ -84,9 +82,7 @@ export default function CommunityHub() {
       <div className="bg-yellow-400 border-b-4 border-black py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold">Comunidade</h1>
-          <p className="text-lg mt-2">
-            Conectando pessoas para transformar nossa cidade
-          </p>
+          <p className="text-lg mt-2">Conectando pessoas para transformar nossa cidade</p>
         </div>
       </div>
 
@@ -97,9 +93,7 @@ export default function CommunityHub() {
             <Button
               variant="neobrutalism"
               className={`${
-                activeSection === "impact"
-                  ? "bg-green-500 text-white"
-                  : "bg-white"
+                activeSection === "impact" ? "bg-green-500 text-white" : "bg-white"
               } border-4 border-black shadow-neobrutalism whitespace-nowrap`}
               onClick={() => scrollToSection("impact")}
             >
@@ -109,9 +103,7 @@ export default function CommunityHub() {
             <Button
               variant="neobrutalism"
               className={`${
-                activeSection === "education"
-                  ? "bg-blue-500 text-white"
-                  : "bg-white"
+                activeSection === "education" ? "bg-blue-500 text-white" : "bg-white"
               } border-4 border-black shadow-neobrutalism whitespace-nowrap`}
               onClick={() => scrollToSection("education")}
             >
@@ -121,9 +113,7 @@ export default function CommunityHub() {
             <Button
               variant="neobrutalism"
               className={`${
-                activeSection === "volunteer"
-                  ? "bg-purple-500 text-white"
-                  : "bg-white"
+                activeSection === "volunteer" ? "bg-purple-500 text-white" : "bg-white"
               } border-4 border-black shadow-neobrutalism whitespace-nowrap`}
               onClick={() => scrollToSection("volunteer")}
             >
@@ -133,9 +123,7 @@ export default function CommunityHub() {
             <Button
               variant="neobrutalism"
               className={`${
-                activeSection === "gamification"
-                  ? "bg-orange-500 text-white"
-                  : "bg-white"
+                activeSection === "gamification" ? "bg-orange-500 text-white" : "bg-white"
               } border-4 border-black shadow-neobrutalism whitespace-nowrap`}
               onClick={() => scrollToSection("gamification")}
             >
@@ -162,9 +150,7 @@ export default function CommunityHub() {
               <Award className="h-12 w-12 mr-4" />
               <div>
                 <h3 className="text-xl font-bold">Marco Alcançado!</h3>
-                <p className="text-lg">
-                  500 problemas de acessibilidade resolvidos!
-                </p>
+                <p className="text-lg">500 problemas de acessibilidade resolvidos!</p>
               </div>
             </div>
             <Button
@@ -190,11 +176,7 @@ export default function CommunityHub() {
                       <span>Progresso da Cidade</span>
                       <span>68%</span>
                     </div>
-                    <Progress
-                      value={68}
-                      className="h-4 border-2 border-black"
-                      indicatorClassName="bg-green-500"
-                    />
+                    <Progress value={68} className="h-4 border-2 border-black" indicatorClassName="bg-green-500" />
                   </div>
                   <div className="grid grid-cols-3 w-full mt-4 gap-2 text-center">
                     <div className="border-4 border-black p-2">
@@ -290,52 +272,41 @@ export default function CommunityHub() {
                 title: "Como Reportar Problemas",
                 icon: FileText,
                 color: "bg-blue-100",
-                description:
-                  "Aprenda a identificar e reportar problemas urbanos de forma eficaz.",
+                description: "Aprenda a identificar e reportar problemas urbanos de forma eficaz.",
               },
               {
                 title: "Guia de Espaços Verdes",
                 icon: MapPin,
                 color: "bg-green-100",
-                description:
-                  "Diretrizes para criação e manutenção de áreas verdes urbanas.",
+                description: "Diretrizes para criação e manutenção de áreas verdes urbanas.",
               },
               {
                 title: "Ilhas de Calor Explicadas",
                 icon: ThumbsUp,
                 color: "bg-red-100",
-                description:
-                  "Entenda o que são ilhas de calor e como podemos combatê-las.",
+                description: "Entenda o que são ilhas de calor e como podemos combatê-las.",
               },
               {
                 title: "Acessibilidade Urbana",
                 icon: Users,
                 color: "bg-purple-100",
-                description:
-                  "Princípios básicos para uma cidade mais acessível a todos.",
+                description: "Princípios básicos para uma cidade mais acessível a todos.",
               },
               {
                 title: "Mobilidade Sustentável",
                 icon: Calendar,
                 color: "bg-yellow-100",
-                description:
-                  "Alternativas de transporte para reduzir emissões e melhorar a qualidade de vida.",
+                description: "Alternativas de transporte para reduzir emissões e melhorar a qualidade de vida.",
               },
               {
                 title: "Gestão de Resíduos",
                 icon: Award,
                 color: "bg-orange-100",
-                description:
-                  "Como separar corretamente seus resíduos e reduzir o impacto ambiental.",
+                description: "Como separar corretamente seus resíduos e reduzir o impacto ambiental.",
               },
             ].map((resource, index) => (
-              <Card
-                key={index}
-                className="border-4 border-black shadow-neobrutalism overflow-hidden"
-              >
-                <CardHeader
-                  className={`${resource.color} border-b-4 border-black`}
-                >
+              <Card key={index} className="border-4 border-black shadow-neobrutalism overflow-hidden">
+                <CardHeader className={`${resource.color} border-b-4 border-black`}>
                   <div className="flex items-center gap-3">
                     <div className="bg-white p-2 rounded-full border-4 border-black">
                       <resource.icon className="h-6 w-6" />
@@ -363,18 +334,13 @@ export default function CommunityHub() {
             <div className="bg-purple-500 p-2 rounded-full border-4 border-black shadow-neobrutalism">
               <Calendar className="h-6 w-6 text-white" />
             </div>
-            <h2 className="text-3xl font-bold">
-              Oportunidades de Voluntariado
-            </h2>
+            <h2 className="text-3xl font-bold">Oportunidades de Voluntariado</h2>
           </div>
 
           <div className="mb-6">
             <Tabs defaultValue="all" className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-6 border-4 border-black shadow-neobrutalism">
-                <TabsTrigger
-                  value="all"
-                  className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
-                >
+                <TabsTrigger value="all" className="data-[state=active]:bg-purple-500 data-[state=active]:text-white">
                   Todos
                 </TabsTrigger>
                 <TabsTrigger
@@ -383,10 +349,7 @@ export default function CommunityHub() {
                 >
                   Plantio
                 </TabsTrigger>
-                <TabsTrigger
-                  value="cleanup"
-                  className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
-                >
+                <TabsTrigger value="cleanup" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">
                   Limpeza
                 </TabsTrigger>
                 <TabsTrigger
@@ -432,15 +395,10 @@ export default function CommunityHub() {
                     spots: 8,
                   },
                 ].map((event, index) => (
-                  <Card
-                    key={index}
-                    className="border-4 border-black shadow-neobrutalism"
-                  >
+                  <Card key={index} className="border-4 border-black shadow-neobrutalism">
                     <div className="grid grid-cols-1 md:grid-cols-4">
                       <div className="md:col-span-3 p-6">
-                        <h3 className="text-xl font-bold mb-2">
-                          {event.title}
-                        </h3>
+                        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
                         <div className="grid grid-cols-2 gap-2 mb-4">
                           <div>
                             <p className="text-sm font-bold">Data:</p>
@@ -477,9 +435,7 @@ export default function CommunityHub() {
                         >
                           Participar
                         </Button>
-                        <p className="text-sm mt-2 text-center">
-                          Inscrições até {event.date}
-                        </p>
+                        <p className="text-sm mt-2 text-center">Inscrições até {event.date}</p>
                       </div>
                     </div>
                   </Card>
@@ -489,23 +445,17 @@ export default function CommunityHub() {
               {/* Other tabs would have similar content filtered by category */}
               <TabsContent value="planting" className="space-y-4">
                 <div className="text-center py-10">
-                  <p className="text-gray-500">
-                    Filtrando eventos de plantio...
-                  </p>
+                  <p className="text-gray-500">Filtrando eventos de plantio...</p>
                 </div>
               </TabsContent>
               <TabsContent value="cleanup" className="space-y-4">
                 <div className="text-center py-10">
-                  <p className="text-gray-500">
-                    Filtrando eventos de limpeza...
-                  </p>
+                  <p className="text-gray-500">Filtrando eventos de limpeza...</p>
                 </div>
               </TabsContent>
               <TabsContent value="education" className="space-y-4">
                 <div className="text-center py-10">
-                  <p className="text-gray-500">
-                    Filtrando eventos educativos...
-                  </p>
+                  <p className="text-gray-500">Filtrando eventos educativos...</p>
                 </div>
               </TabsContent>
             </Tabs>
@@ -533,9 +483,7 @@ export default function CommunityHub() {
                     <Users className="h-12 w-12" />
                   </div>
                   <h3 className="font-bold text-xl">Matheus</h3>
-                  <p className="text-sm text-gray-600">
-                    Nível 3: Cidadão Ativo
-                  </p>
+                  <p className="text-sm text-gray-600">Nível 3: Cidadão Ativo</p>
                 </div>
 
                 <div className="space-y-4">
@@ -590,29 +538,16 @@ export default function CommunityHub() {
               <CardContent className="pt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-bold mb-4 text-center">
-                      Mais Relatórios
-                    </h3>
+                    <h3 className="font-bold mb-4 text-center">Mais Relatórios</h3>
                     <div className="space-y-2">
                       {[
                         { name: "Centro", count: 156, color: "bg-yellow-500" },
-                        {
-                          name: "Jardim América",
-                          count: 124,
-                          color: "bg-gray-300",
-                        },
-                        {
-                          name: "Vila Nova",
-                          count: 98,
-                          color: "bg-orange-300",
-                        },
+                        { name: "Jardim América", count: 124, color: "bg-gray-300" },
+                        { name: "Vila Nova", count: 98, color: "bg-orange-300" },
                         { name: "Bela Vista", count: 87, color: "bg-gray-300" },
                         { name: "Lar Paraná", count: 76, color: "bg-gray-300" },
                       ].map((neighborhood, index) => (
-                        <div
-                          key={index}
-                          className="border-4 border-black p-3 flex justify-between items-center"
-                        >
+                        <div key={index} className="border-4 border-black p-3 flex justify-between items-center">
                           <div className="flex items-center">
                             <div
                               className={`w-8 h-8 ${neighborhood.color} rounded-full border-2 border-black flex items-center justify-center mr-2 font-bold`}
@@ -621,38 +556,23 @@ export default function CommunityHub() {
                             </div>
                             <span>{neighborhood.name}</span>
                           </div>
-                          <span className="font-bold">
-                            {neighborhood.count}
-                          </span>
+                          <span className="font-bold">{neighborhood.count}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="font-bold mb-4 text-center">
-                      Mais Resoluções
-                    </h3>
+                    <h3 className="font-bold mb-4 text-center">Mais Resoluções</h3>
                     <div className="space-y-2">
                       {[
-                        {
-                          name: "Jardim América",
-                          count: 112,
-                          color: "bg-yellow-500",
-                        },
+                        { name: "Jardim América", count: 112, color: "bg-yellow-500" },
                         { name: "Centro", count: 98, color: "bg-gray-300" },
-                        {
-                          name: "Bela Vista",
-                          count: 76,
-                          color: "bg-orange-300",
-                        },
+                        { name: "Bela Vista", count: 76, color: "bg-orange-300" },
                         { name: "Vila Nova", count: 65, color: "bg-gray-300" },
                         { name: "Lar Paraná", count: 54, color: "bg-gray-300" },
                       ].map((neighborhood, index) => (
-                        <div
-                          key={index}
-                          className="border-4 border-black p-3 flex justify-between items-center"
-                        >
+                        <div key={index} className="border-4 border-black p-3 flex justify-between items-center">
                           <div className="flex items-center">
                             <div
                               className={`w-8 h-8 ${neighborhood.color} rounded-full border-2 border-black flex items-center justify-center mr-2 font-bold`}
@@ -661,9 +581,7 @@ export default function CommunityHub() {
                             </div>
                             <span>{neighborhood.name}</span>
                           </div>
-                          <span className="font-bold">
-                            {neighborhood.count}
-                          </span>
+                          <span className="font-bold">{neighborhood.count}</span>
                         </div>
                       ))}
                     </div>
@@ -671,9 +589,7 @@ export default function CommunityHub() {
                 </div>
 
                 <div className="mt-8">
-                  <h3 className="font-bold mb-4 text-center">
-                    Top Contribuidores
-                  </h3>
+                  <h3 className="font-bold mb-4 text-center">Top Contribuidores</h3>
                   <div className="flex flex-wrap justify-center gap-4">
                     {[1, 2, 3, 4, 5, 6, 7, 8].map((user) => (
                       <div
@@ -692,5 +608,5 @@ export default function CommunityHub() {
         </section>
       </div>
     </div>
-  );
+  )
 }

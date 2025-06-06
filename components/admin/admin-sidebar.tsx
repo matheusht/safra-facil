@@ -1,26 +1,16 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  FileText,
-  Map,
-  BarChart3,
-  Users,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { useMobile } from "@/hooks/use-mobile";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { LayoutDashboard, FileText, Map, BarChart3, Users, Settings, LogOut, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import { useMobile } from "@/hooks/use-mobile"
 
 export function AdminSidebar() {
-  const pathname = usePathname();
-  const isMobile = useMobile();
-  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname()
+  const isMobile = useMobile()
+  const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
     { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
@@ -29,11 +19,11 @@ export function AdminSidebar() {
     { name: "Análises", href: "/admin/analytics", icon: BarChart3 },
     { name: "Equipe", href: "/admin/team", icon: Users },
     { name: "Configurações", href: "/admin/settings", icon: Settings },
-  ];
+  ]
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   // On mobile, show a button to toggle the sidebar
   if (isMobile) {
@@ -102,7 +92,7 @@ export function AdminSidebar() {
           </div>
         </div>
       </>
-    );
+    )
   }
 
   // Desktop sidebar
@@ -120,9 +110,7 @@ export function AdminSidebar() {
                 <Button
                   variant="neobrutalism"
                   className={`w-full justify-start ${
-                    pathname === item.href
-                      ? "bg-green-500 text-white hover:bg-green-600"
-                      : "bg-white hover:bg-gray-100"
+                    pathname === item.href ? "bg-green-500 text-white hover:bg-green-600" : "bg-white hover:bg-gray-100"
                   } border-4 border-black shadow-neobrutalism`}
                 >
                   <item.icon className="h-5 w-5 mr-2" />
@@ -144,5 +132,5 @@ export function AdminSidebar() {
         </div>
       </nav>
     </div>
-  );
+  )
 }

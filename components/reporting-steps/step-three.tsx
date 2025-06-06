@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { MapPin, Camera, AlertTriangle } from "lucide-react"
+import { MapPin, Camera, AlertTriangle, LeafIcon } from "lucide-react"
 
 interface StepThreeProps {
   formData: {
@@ -45,11 +45,11 @@ export function StepThree({ formData, updateFormData }: StepThreeProps) {
         </Label>
         <Textarea
           id="description"
-          placeholder="Descreva o problema em detalhes (máximo 150 caracteres)"
+          placeholder="Descreva problemas que você encontra atualmente ( em detalhes )"
           className="border-4 border-black shadow-neobrutalism resize-none"
           value={formData.description}
           onChange={(e) => updateFormData({ description: e.target.value })}
-          maxLength={150}
+          maxLength={3}
         />
         <div className="text-right text-sm text-gray-500">{formData.description.length}/150 caracteres</div>
       </div>
@@ -70,7 +70,7 @@ export function StepThree({ formData, updateFormData }: StepThreeProps) {
         {formData.notifyMe && (
           <Input
             type="email"
-            placeholder="Seu email"
+            placeholder="Seu numero"
             className="border-4 border-black shadow-neobrutalism"
             value={formData.email}
             onChange={(e) => updateFormData({ email: e.target.value })}
@@ -79,10 +79,10 @@ export function StepThree({ formData, updateFormData }: StepThreeProps) {
       </div>
 
       <div className="space-y-2">
-        <Label className="text-lg font-bold">Resumo do Relatório</Label>
+        <Label className="text-lg font-bold">Resumo do Fazenda</Label>
         <Card className="border-4 border-black shadow-neobrutalism p-4 space-y-4">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-1" />
+            <LeafIcon className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-bold">Categoria</h4>
               <p>{getCategoryName(formData.category)}</p>
@@ -108,7 +108,7 @@ export function StepThree({ formData, updateFormData }: StepThreeProps) {
           </div>
 
           <div>
-            <h4 className="font-bold">Gravidade</h4>
+            <h4 className="font-bold">Faturamento Mensal</h4>
             <div className="flex items-center mt-1">
               {[1, 2, 3, 4, 5].map((level) => (
                 <div

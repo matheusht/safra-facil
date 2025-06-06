@@ -51,7 +51,7 @@ export function StepOne({ formData, updateFormData }: StepOneProps) {
       // Create the map instance
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/streets-v11",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
         center: [formData.location.lng, formData.location.lat],
         zoom: 14,
         attributionControl: false, // Hide attribution for cleaner look
@@ -229,21 +229,17 @@ export function StepOne({ formData, updateFormData }: StepOneProps) {
     <div className="space-y-6">
       <div className="space-y-2">
         <Label htmlFor="category" className="text-lg font-bold">
-          Categoria do Problema
+          Qual a principal área que você trabalha?
         </Label>
         <Select value={formData.category} onValueChange={(value) => updateFormData({ category: value })}>
           <SelectTrigger id="category" className="border-4 border-black shadow-neobrutalism">
             <SelectValue placeholder="Selecione uma categoria" />
           </SelectTrigger>
           <SelectContent className="border-4 border-black shadow-neobrutalism">
-            <SelectItem value="missing-ramp">Rampa de acessibilidade ausente</SelectItem>
-            <SelectItem value="obstruction">Obstrução na calçada</SelectItem>
-            <SelectItem value="uneven-surface">Superfície irregular</SelectItem>
-            <SelectItem value="broken-sidewalk">Calçada quebrada</SelectItem>
-            <SelectItem value="missing-tree">Área sem árvores</SelectItem>
-            <SelectItem value="heat-island">Ilha de calor</SelectItem>
-            <SelectItem value="flooding">Área de alagamento</SelectItem>
-            <SelectItem value="other">Outro problema</SelectItem>
+            <SelectItem value="missing-ramp">Agricultura</SelectItem>
+            <SelectItem value="obstruction">Pecuária</SelectItem>
+            <SelectItem value="obstruction">Outra</SelectItem>
+            
           </SelectContent>
         </Select>
       </div>
